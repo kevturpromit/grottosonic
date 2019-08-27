@@ -9,6 +9,7 @@
     'website': 'http://promitgt.com/',
     'depends': ['base'],
     'data': [
+        'sincro.xml'
         'security/ir.model.access.csv',
     ],
     'demo': [],

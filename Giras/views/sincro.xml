@@ -1,0 +1,16 @@
+<openerp>
+    <data>
+
+        <!--Corrección al campo User_id-->
+        <record model="res_partner">
+        </record>
+
+        <record model="res_partner">
+                <field name="customer" position="after">
+                    <field name="user_id" string="Vendedor"></field>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
