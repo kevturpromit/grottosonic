@@ -10,7 +10,7 @@ class ResPartner(models.Model):
     user_id = fields.Many2one('res.users', compute="_compute_user_id",string='Salesperson',
       help='The internal user in charge of this contact.')
 
-    @api.depends('x_vendedor')
+    @api.depends('x_studio_vendedor')
     def _compute_user_id(self):
         for record in self:
-            record.user_id = record.x_vendedor
+            record.user_id = record.x_studio_vendedor
