@@ -2,7 +2,7 @@
 
 {
     'name': 'Giras',
-    'version': '1.0',
+    'version': '2.0',
     'category': 'Tools',
     'description': """ Sincronización de los campos de Giras """,
     'author': 'Kevin Rolando Turcios Ac',
