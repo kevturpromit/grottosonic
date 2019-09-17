@@ -1,0 +1,299 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* nan_partner_risk
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20190424\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-05 12:12+0000\n"
+"PO-Revision-Date: 2019-08-05 08:28-0400\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.0.9\n"
+
+#. module: nan_partner_risk
+#: model:ir.model,name:nan_partner_risk.model_account_account
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__cash_credit
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__cash_credit
+msgid "Allow Over Credit?"
+msgstr "¿Permitir más de crédito?"
+
+#. module: nan_partner_risk
+#: model_terms:ir.ui.view,arch_db:nan_partner_risk.sale_order_form_risk
+msgid "Approve Order"
+msgstr "Aprobar pedido"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__available_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__available_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__available_risk
+msgid "Available Credit"
+msgstr "Credito disponible"
+
+#. module: nan_partner_risk
+#: model_terms:ir.ui.view,arch_db:nan_partner_risk.sale_order_form_risk
+msgid "Cancel Order"
+msgstr "Cancelar pedido"
+
+#. module: nan_partner_risk
+#: selection:sale.order,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_account_account__circulating
+msgid "Circulating"
+msgstr "En circulación"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__circulating_amount
+msgid "Circulating amount"
+msgstr "Importe en circulación"
+
+#. module: nan_partner_risk
+#: model_terms:ir.ui.view,arch_db:nan_partner_risk.sale_order_form_risk
+msgid "Confirm Order"
+msgstr "Confirmar pedido"
+
+#. module: nan_partner_risk
+#: model:ir.model,name:nan_partner_risk.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__pending_credit_days
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__pending_credit_days
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__pending_credit_days
+msgid "Credit Days Pending"
+msgstr "Días de crédito pendientes"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__credit_limit
+msgid "Credit Limit"
+msgstr "Crédito límite"
+
+#. module: nan_partner_risk
+#: code:addons/nan_partner_risk/models/sale_order.py:80
+#, python-format
+msgid "Credit Limit Exceeded"
+msgstr "Se ha excedido el crédito concedido"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__total_risk_percent
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__total_risk_percent
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__total_risk_percent
+msgid "Credit Usage (%)"
+msgstr "Uso del crédito (%)"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__pending_docum_cred
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__pending_docum_cred
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__pending_docum_cred
+msgid "Document Credit Pending"
+msgstr "Documento de crédito pendiente"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__pending_docum_debi
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__pending_docum_debi
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__pending_docum_debi
+msgid "Document Debit Pending"
+msgstr "Documento pendiente de débito"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__pending_docum_draft
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__pending_docum_draft
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__pending_docum_draft
+msgid "Document Draft Pending"
+msgstr "Borrador de documento pendiente"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__draft_invoices_amount
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__draft_invoices_amount
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__draft_invoices_amount
+msgid "Draft Invoices"
+msgstr "Facturas en borrador"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__unpayed_amount
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__unpayed_amount
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__unpayed_amount
+msgid "Expired Unpaid Payments"
+msgstr "Efectos impagados vencidos"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__id
+msgid "ID"
+msgstr "ID"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_sale_order__amount_invoiced
+#: model:ir.model.fields,field_description:nan_partner_risk.field_sale_order_line__amount_invoiced
+msgid "Invoiced Amount"
+msgstr "Importe facturado"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: nan_partner_risk
+#: selection:sale.order,state:0
+msgid "Locked"
+msgstr "Bloqueado"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__max_dias_credit
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__max_dias_credit
+msgid "Maximum amount of credit days"
+msgstr "Cantidad máxima de días de crédito"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__max_invoice_credit
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__max_invoice_credit
+msgid "Maximum amount of pending invoices"
+msgstr "Cantidad máxima de facturas pendientes"
+
+#. module: nan_partner_risk
+#: model_terms:ir.ui.view,arch_db:nan_partner_risk.open_risk_window_view
+msgid "Partner Risk Information"
+msgstr "Información de riesgo/credito"
+
+#. module: nan_partner_risk
+#: model:ir.model,name:nan_partner_risk.model_open_risk_window
+msgid "Partner's risk information"
+msgstr "Información de riesgo/credito"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__circulating_amount
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__circulating_amount
+msgid "Payments Sent to Bank"
+msgstr "Pagos enviados al banco"
+
+#. module: nan_partner_risk
+#: selection:sale.order,state:0
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: nan_partner_risk
+#: selection:sale.order,state:0
+msgid "Quotation Sent"
+msgstr "Presupuesto enviado"
+
+#. module: nan_partner_risk
+#: model:res.groups,name:nan_partner_risk.group_risk_manager
+msgid "Risk Manager"
+msgstr "Gestor de riesgo/credito"
+
+#. module: nan_partner_risk
+#: model:ir.model,name:nan_partner_risk.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: nan_partner_risk
+#: selection:sale.order,state:0
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: nan_partner_risk
+#: model:ir.model,name:nan_partner_risk.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: nan_partner_risk
+#: model:ir.actions.act_window,name:nan_partner_risk.action_open_risk_window
+msgid "Show Partner Risk Information"
+msgstr "Muestra información del riesgo contable de una empresa"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_sale_order__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__total_debt
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__total_debt
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__total_debt
+msgid "Total Debt"
+msgstr "Deuda total"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__pending_amount
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__pending_amount
+msgid "Unexpired Pending Payments"
+msgstr "Efectos pendientes no vencidos"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__pending_amount
+msgid "Unexpired Unpaid Payments"
+msgstr "Efectos impagados no vencidos"
+
+#. module: nan_partner_risk
+#: model:ir.model.fields,field_description:nan_partner_risk.field_open_risk_window__pending_orders_amount
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_partner__pending_orders_amount
+#: model:ir.model.fields,field_description:nan_partner_risk.field_res_users__pending_orders_amount
+msgid "Uninvoiced Orders"
+msgstr "Pedidos de venta sin facturar"
+
+#. module: nan_partner_risk
+#: model_terms:ir.ui.view,arch_db:nan_partner_risk.view_partner_form
+msgid "View Risk Information"
+msgstr "Ver información del riesgo"
+
+#. module: nan_partner_risk
+#: model_terms:ir.ui.view,arch_db:nan_partner_risk.view_sales_order_add_wait_risk_filter
+#: selection:sale.order,state:0
+msgid "Waiting Risk Approval"
+msgstr "Esperando aprobación de credito"
+
+#. module: nan_partner_risk
+#: code:addons/nan_partner_risk/models/sale_order.py:81
+#, python-format
+msgid ""
+"Warning: Credit Limit Exceeded.\n"
+"\n"
+"This                         partner has a credit limit of %(limit).2f and already                         has a debt of %(debt).2f."
+msgstr ""
+"Advertencia: Límite de crédito excedido.\n"
+"\n"
+"Esta                          empresa tiene un crédito concedido máximo de %(limit).2f y ya                         tiene una deuda de %(debt).2f."
+
+#. module: nan_partner_risk
+#: code:addons/nan_partner_risk/models/sale_order.py:47
+#, python-format
+msgid "You can not confirm Sale Order. \n"
+msgstr "No puede confirmar la orden de venta.\n"
