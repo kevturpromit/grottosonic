@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="open_risk_sale_view" model="ir.ui.view">
+           <field name="name">open_risk_sale_view</field>
+           <field name="model">open.risk.sale</field>
+           <field name="arch" type="xml">
+                <form string="Credit Policies not met">
+                    <group colspan="4">
+                    	<group>
+	                        <field name="credit_limit"/>
+	                        <field name="max_invoice_credit"/>
+	                        <field name="max_dias_credit"/>	                        
+	                        <field name="available_risk"/>
+	                        <field name="total_risk_percent" widget="progressbar"/>	                                            	
+                    	</group>
+                    	<group>
+	                        <field name="unpayed_amount"/>
+	                        <field name="pending_amount"/>
+	                        <field name="draft_invoices_amount"/>
+	                        <field name="pending_orders_amount"/>
+	                        <field name="circulating_amount"/>
+	                        <field name="pending_docum_debi"/>
+	                        <field name="pending_credit_days"/>
+	                        <field name="total_debt"/>
+                        </group>
+                        <field name="memo" nolabel="1" placeholder="Describe the reason why order confirmation requires approval" colspan="4"/>                        
+                    </group>
+                    <footer>
+                        <button name="draft_to_risk" type="object" string="Continue" class="btn-primary" groups="sales_team.group_sale_salesman"/>
+                        or
+                        <button string="_Cancel" class="btn-default" special="cancel" />
+                    </footer>                    
+                </form>
+           </field>
+      </record>
+
+      <record id="action_open_risk2_window" model="ir.actions.act_window">
+             <field name="name">Show credit policy information</field>
+             <field name="res_model">open.risk.sale</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">form</field>
+             <field name="view_id" ref="open_risk_sale_view"/>
+             <field name="target">new</field>
+       </record>
+
+
+</odoo>

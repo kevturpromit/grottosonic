@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_partner_form">
+                <field name="name">res.partner.form.risk</field>
+                <field name="model">res.partner</field>
+                <field name="inherit_id" ref="account.view_partner_property_form"/>
+                <field name="arch" type="xml">
+                    <field name="property_account_position_id" position="after">
+                    	<field name="credit_limit"/>
+                    	<field name="max_invoice_credit"/>
+                    	<field name="max_dias_credit"/>
+                    	<field name="cash_credit"/>
+                        <button string="View Risk Information" name="%(action_open_risk_window)d"
+                                icon="fa-exclamation-triangle" type="action" colspan="2"/>
+                    </field>
+                </field>
+        </record>
+
+    </data>
+</openerp>

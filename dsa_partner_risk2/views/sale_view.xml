@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- sale.view -->
+    <record id="sale_order_form_risk" model="ir.ui.view">
+        <field name="name">sale.order.form.risk</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm'][2]" position="replace">
+                <button name="draft_to_risk" 
+                		string="Confirm Order"  
+                		type="object" 
+                		groups="base.group_user"
+                		attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                <button name="risk_to_router" 
+                		string="Approve Order" 
+                		type="object" 
+                		groups="dsa_partner_risk.group_risk_manager" 
+                		class="oe_highlight"
+                		attrs="{'invisible': [('state', 'not in', ['wait_risk'])]}"/>                		
+                <button name="risk_to_cancel" 
+                		string="Cancel Order"  
+                		type="object" 
+                		groups="base.group_user"
+                		attrs="{'invisible': [('state', 'not in', ['wait_risk'])]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][1]" position="replace">
+                <button name="draft_to_risk" 
+                		string="Confirm Order" 
+                		type="object" 
+                		class="oe_highlight" 
+                		groups="base.group_user"
+                		attrs="{'invisible': [('state', 'not in', ['sent'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--AÑADO BUSQUEDA POR SO PENDIENTES DE ENVIAR-->
+    <record id="view_sales_order_add_wait_risk_filter" model="ir.ui.view">
+        <field name="name">sale.order.add_wait_risk_filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="/search/separator[1]" position="after">
+                <filter name="wait_risk_approval" string="Waiting Risk Approval" domain="[('state','=','wait_risk')]"/>
+            </xpath>
+        </field>
+    </record>
+        
+    <record id="action_orders_to_aprob" model="ir.actions.act_window">
+        <field name="name">Sales Orders to Approval</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+        <field name="context">{}</field>
+        <field name="domain">[('state', '=', 'wait_risk')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new sale!
+            </p><p>
+                Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+            </p>
+        </field>
+    </record>    
+            
+    <menuitem id="menu_sale_order_to_aprob"
+        name="Orders to Approval"
+        action="action_orders_to_aprob"
+        parent="sale.sale_order_menu"
+        sequence="1" groups="sales_team.group_sale_salesman"/>
+        
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel','wait_risk'))]</field>
+    </record>
+    
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+    	<field name="domain">[('state', 'not in', ['wait_risk'])]</field>
+    </record>
+   
+</odoo>
+
