@@ -6,6 +6,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 import logging
 from odoo import fields, models, api, _
+import time
 
 _logger = logging.getLogger(__name__)
 
@@ -80,5 +81,31 @@ class OpenRiskSale(models.TransientModel):
     
     @api.multi
     def draft_to_risk(self):
-        active_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))    
+        today = time.strftime('%Y-%m-%d')
+        memo = self.env.context.get('memo')
+        active_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))
+        activity_obj = self.env['mail.activity']
+        activity_type_ids = self.env['mail.activity.type'].search([('name', '=', 'Todo')])
+        model_ids = self.env['ir.model'].search([('model', '=', self._context.get('active_model'))])
+        activity_type_id = False
+        model_id = False
+        for x in activity_type_ids:
+            if not activity_type_id:
+                activity_type_id = x.id
+        for x in model_ids:
+            if not model_id:
+                model_id = x.id
+        #active_id.message_post()
+        activity_obj.create({
+            'res_id':active_id.id,
+            'res_model_id':model_id,
+            #'date_deadline':today,
+            'summary':'Pedido de venta en espera de aprobacion de credito',
+            'user_id':active_id.user_id.id,
+            'create_user_id':active_id.user_id.id,
+            #'note': memo,            
+            'activity_type_id':activity_type_id,
+            #'activity_ids': [(6, 0, [active_id.id])]
+            })    
+        active_id.with_context(new_state='wait_risk').action_confirm()
         return active_id.write({'state': 'wait_risk'})

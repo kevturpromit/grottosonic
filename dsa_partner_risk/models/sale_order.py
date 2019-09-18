@@ -56,6 +56,15 @@ class SaleOrder(models.Model):
                                    string='Invoiced Amount')
     state = fields.Selection(
         selection_add=[('wait_risk', 'Waiting Risk Approval')])
+    
+    @api.multi
+    def action_draft(self):
+        orders = self.filtered(lambda s: s.state in ['cancel', 'sent','wait_risk'])
+        return orders.write({
+            'state': 'draft',
+            'signature': False,
+            'signed_by': False,
+        })    
 
     @api.multi
     def _amount_invoiced(self):
@@ -92,27 +101,18 @@ class SaleOrder(models.Model):
     @api.multi
     def draft_to_risk(self):
         for order in self:
-            partner = order.partner_id
-            _logger.info('Riesgo 1') 
+            partner = order.partner_id 
             politic_risk1 = (partner.available_risk - order.amount_total < 0.0)
             sMemo = ''
             if politic_risk1:
-                _logger.info('Se sobrepasa el limite de credito')
                 sMemo += '\n .- Se sobrepasa el limite de credito' 
-            _logger.info('Riesgo 2')  
             politic_risk2 = (partner.pending_docum_debi > partner.max_invoice_credit)
             if politic_risk2:
-                _logger.info('La cantidad de documentos pendientes sobrepasa la permitida')
-                sMemo += '\n .- La cantidad de documentos pendientes sobrepasa la permitida'             
-            _logger.info('Riesgo 3')               
+                sMemo += '\n .- La cantidad de documentos pendientes sobrepasa la permitida'                            
             politic_risk3 = (partner.pending_credit_days > partner.max_dias_credit)
             if politic_risk3:
-                _logger.info('Se excedio la en los dias de credito')
-                sMemo = '\n .- Se excedio la en los dias de credito'            
-            _logger.info('Todos los riesgos') 
-            politic_risk = politic_risk1 or politic_risk2 or politic_risk3
-            if politic_risk:
-                _logger.info('Todas se cumplen') 
+                sMemo = '\n .- Se excedio la en los dias de credito'             
+            politic_risk = politic_risk1 or politic_risk2 or politic_risk3 
             if not politic_risk:
                 order.action_confirm()
             else:
@@ -129,20 +129,55 @@ class SaleOrder(models.Model):
       
     @api.multi
     def risk_to_cancel(self):
-        return self.write({'state': 'cancel'})
+        return self.action_cancel()
 
     @api.multi
     def risk_to_router(self):
         for order in self:
-            return order.action_confirm()
+            return order.with_context(new_state='assigned').action_confirm()
             partner = order.partner_id
             if not partner.credit_limit or \
                     partner.available_risk - order.amount_total >= 0.0:
-                order.action_confirm()
+                order.with_context(new_state='assigned').action_confirm()
             elif partner.credit_limit or \
                     partner.available_risk - order.amount_total < 0.0:
                 return self.write({'state': 'wait_risk'})
-
+            
+            
+    @api.multi
+    def action_confirm(self):
+        res = super(SaleOrder,self).action_confirm()
+        new_state = self.env.context.get('new_state',False)
+        if new_state:        
+            if self._get_forbidden_state_confirm() & set(self.mapped('state')):
+                raise UserError(_(
+                    'It is not allowed to confirm an order in the following states: %s'
+                ) % (', '.join(self._get_forbidden_state_confirm())))
+    
+            for order in self.filtered(lambda order: order.partner_id not in order.message_partner_ids):
+                order.message_subscribe([order.partner_id.id])
+            if new_state=='wait_risk':
+                self.write({
+                    'state': new_state
+                })                
+            else:
+                self.write({
+                    'state': 'sale',
+                    'confirmation_date': fields.Datetime.now()
+                })
+            self._action_confirm()
+            if self.env['ir.config_parameter'].sudo().get_param('sale.auto_done_setting'):
+                self.action_done()
+            return True    
+        return res    
+    
+    @api.multi
+    def _action_confirm(self):
+        super(SaleOrder, self)._action_confirm()
+        new_state = self.env.context.get('new_state',False)
+        if new_state and new_state!='wait_risk':     
+            for order in self:
+                order.mapped('picking_ids').action_wait_risk()                             
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
