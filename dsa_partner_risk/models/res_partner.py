@@ -12,9 +12,10 @@ import time
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    cash_credit = fields.Boolean('Allow Over Credit?')
-    max_invoice_credit = fields.Integer(string='Maximum amount of pending invoices', default=2)
-    max_dias_credit = fields.Integer(string='Maximum amount of credit days', default=15)    
+    cash_credit = fields.Boolean('Allow Over Credit?', track_visibility = 'onchange')
+    credit_limit = fields.Float(track_visibility = 'onchange')
+    max_invoice_credit = fields.Integer(string='Maximum amount of pending invoices', default=2, track_visibility = 'onchange')
+    max_dias_credit = fields.Integer(string='Maximum amount of credit days', default=15, track_visibility = 'onchange')    
     unpayed_amount = fields.Float(compute='_unpayed_amount',
                                   string='Expired Unpaid Payments')
     pending_amount = fields.Float(compute='_pending_amount',
