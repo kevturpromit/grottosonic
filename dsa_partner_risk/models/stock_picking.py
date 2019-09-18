@@ -5,31 +5,6 @@ from odoo import fields, models, api, _
 
 _logger = logging.getLogger(__name__)
 
-
-class PickingType(models.Model):
-    _inherit = "stock.picking.type"
-    
-    count_picking_wait_risk = fields.Integer(compute='_compute_picking_count')
-    
-    def _compute_picking_count(self):
-        super(PickingType,self)._compute_picking_count()
-        domains = {
-            'count_picking_wait_risk': [('state', '=', 'wait_risk')],
-        }
-        for field in domains:
-            data = self.env['stock.picking'].read_group(domains[field] +
-                [('state', 'not in', ('done', 'cancel')), ('picking_type_id', 'in', self.ids)],
-                ['picking_type_id'], ['picking_type_id'])
-            count = {
-                x['picking_type_id'][0]: x['picking_type_id_count']
-                for x in data if x['picking_type_id']
-            }
-            for record in self:
-                record[field] = count.get(record.id, 0)    
-
-    def get_action_picking_tree_wait_risk(self):
-        return self._get_action('dsa_partner_risk.action_picking_tree_wait_risk')
-
 class StockMove(models.Model):
     _inherit = "stock.move"
     
