@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+  
+    <menuitem name="Logistics" id="menu_logistic_mgmt" parent="stock.menu_stock_root"  sequence="12"/>
+    <!-- 
+    <record id="grotto_logistica_action_picking_en_preparacion" model="ir.actions.act_window">
+        <field name="name">Pedidos en preparacíon</field>
+        <field name="res_model">stock.picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="domain"></field>
+        <field name="context">{
+                'contact_display': 'partner_address',
+        }
+        </field>
+        <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define a new transfer
+          </p>
+        </field>
+    </record>    
+    
+    <menuitem name="Pedidos en preparacíon" id="menu_logistic_02" parent="menu_logistic_mgmt" action="grotto_logistica_action_picking_en_preparacion" sequence="2"/>    
+    
+    <record id="grotto_logistica_action_picking_por_realizar" model="ir.actions.act_window">
+        <field name="name">Picking</field>
+        <field name="res_model">stock.picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="domain"></field>
+        <field name="context">{
+                'contact_display': 'partner_address',
+        }
+        </field>
+        <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define a new transfer
+          </p>
+        </field>
+    </record>        
+    
+    <menuitem name="Picking" id="menu_logistic_04" parent="menu_logistic_mgmt" action="grotto_logistica_action_picking_por_realizar" sequence="4"/>
+    -->        
+
+  </data>
+</odoo>
