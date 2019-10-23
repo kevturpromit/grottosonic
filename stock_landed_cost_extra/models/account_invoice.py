@@ -32,13 +32,19 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).write(vals)
         if process_ok:        
             for invoice in self:
+                company_currency = invoice.company_id.currency_id
                 if invoice.landed_costs_id and not (invoice.state in ['draft','cancel']):
                     for landed_cost in invoice.invoice_line_ids:
                         if landed_cost.product_id.landed_cost_ok:
+                            price_unit = landed_cost.price_subtotal
+                            if self.currency_id != company_currency:
+                                currency = self.currency_id
+                                date = self._get_currency_rate_date() or fields.Date.context_today(self)
+                                price_unit = currency._convert(price_unit, company_currency, self.company_id, date)                            
                             landed_vals = {'product_id':landed_cost.product_id.id,
                                            'name':landed_cost.name,
                                            'account_id':landed_cost.account_id.id,
-                                           'price_unit':landed_cost.price_subtotal,
+                                           'price_unit':price_unit,
                                            'split_method':landed_cost.product_id.split_method,
                                            'invoice_id':invoice.id,
                                            'cost_id':invoice.landed_costs_id.id}
