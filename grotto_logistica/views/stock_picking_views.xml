@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="stock_picking_repartidor_search">
+      <field name="name">stock.picking.repartidor.search</field>
+      <field name="model">stock.picking</field>
+      <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+      <field name="arch" type="xml">
+       	<filter name="picking_type" position="after">
+      		<filter name="picking_repartidor" string="Repartidor" domain="[]" context="{'group_by':'x_studio_field_ogKKX'}"/>
+        </filter> 
+      </field>
+    </record>
+    
+    <record id="grotto_logistica_action_picking_en_preparacion" model="ir.actions.act_window">
+        <field name="name">Pedidos en preparacíon</field>
+        <field name="res_model">stock.picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="domain"></field>
+        <field name="context">{
+        		'search_default_wait_risk': 1,
+        		'search_default_waiting': 1,
+                'contact_display': 'partner_address',
+        }
+        </field>
+        <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define a new transfer
+          </p>
+        </field>
+    </record>    
+    
+    <menuitem name="Pedidos en preparacíon" id="menu_logistic_02" parent="menu_logistic_mgmt" action="grotto_logistica_action_picking_en_preparacion" sequence="2"/>    
+    
+    <record id="grotto_logistica_action_picking_por_realizar" model="ir.actions.act_window">
+        <field name="name">Picking</field>
+        <field name="res_model">stock.picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="domain"></field>
+        <field name="context">{
+        		'search_default_done': 1,
+                'contact_display': 'partner_address',
+        }
+        </field>
+        <field name="search_view_id" ref="grotto_logistica.stock_picking_repartidor_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define a new transfer
+          </p>
+        </field>
+    </record>
+    
+    <menuitem name="Picking" id="menu_logistic_04" parent="menu_logistic_mgmt" action="grotto_logistica_action_picking_por_realizar" sequence="4"/>       
+
+  </data>
+</odoo>

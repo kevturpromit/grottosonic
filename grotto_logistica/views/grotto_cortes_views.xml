@@ -1,0 +1,83 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="grotto_cortes_list">
+      <field name="name">grotto.cortes.list</field>
+      <field name="model">grotto.cortes</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="grotto_cortes_form">
+      <field name="name">grotto.cortes.form</field>
+      <field name="model">grotto.cortes</field>
+      <field name="arch" type="xml">
+        <form>
+			<sheet string="Corte">
+				<div class="oe_title">
+	            	<h1>
+	                	<field name="name" required="1"/>
+	            	</h1>
+				</div>
+	 			<field name="picking_ids">
+			  		<tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" decoration-danger="state not in ('cancel', 'done') and scheduled_date &lt; current_date" string="Picking list">
+			    		<field name="display_name"/>
+			    		<!-- 
+			    		<field name="x_studio_field_h0eP1" string="Repartidor"/>
+			    		 -->
+			    		<field name="location_dest_id" groups="stock.group_stock_multi_locations" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;not in&quot;,[&quot;draft&quot;]]]}" invisible="1"/>
+			    		<field name="partner_id" string="Cliente"/>
+			    		<!-- 
+			    		<field name="invoice_ids_count" string="Cantidad de Facturas"/>
+			    		 -->
+			    		<!-- 
+			    		<field name="sale_id" string="Pedido"/>
+			    		 -->
+			    		<!-- 
+			    		<field name="x_studio_vendedor" string="Vendedor"/>
+			    		<field name="x_studio_medio_de_pago" string="Medio de Pago"/>
+			    		<field name="x_studio_numero_de_factura" string="Numero de Factura"/>
+			    		<field name="x_currency_id"/>
+			    		<field name="x_studio_field_Wp2QL" string="Monto a Cobrar"/>
+			    		<field name="x_studio_medio_de_pago_1" string="Medio de Pago"/>
+			    		<field name="x_studio_ref" string="Ref."/>
+			    		 -->
+			    		<field name="date" invisible="1"/>
+			    		<field name="scheduled_date" attrs="{}" invisible="1"/>
+			    		<field name="origin" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;in&quot;,[&quot;done&quot;,&quot;cancel&quot;]]]}" invisible="1"/>
+			    		<field name="group_id" invisible="1"/>
+			    		<field name="backorder_id" attrs="{&quot;readonly&quot;: [[&quot;state&quot;,&quot;in&quot;,[&quot;done&quot;,&quot;cancel&quot;]]]}" invisible="1"/>
+			    		<field name="state" attrs="{}" invisible="1"/>
+			    		<field name="priority" invisible="1"/>
+			    		<field name="picking_type_id" invisible="1"/>
+			  		</tree>
+				</field>
+			</sheet>
+        </form>
+      </field>
+    </record>    
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="grotto_cortes_action_window">
+      <field name="name">Cortes</field>
+      <field name="res_model">grotto.cortes</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- actions -->
+    <menuitem 
+    	name="Corte" 
+    	id="menu_logistic_06" 
+    	parent="menu_logistic_mgmt" 
+    	sequence="6"
+    	action="grotto_cortes_action_window"/>
+
+  </data>
+</odoo>
