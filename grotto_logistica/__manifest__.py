@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock','eq_invoice_from_picking'],
+    'depends': ['stock','eq_invoice_from_picking','grotto_studio_fields'],
 
     # always loaded
     'data': [
@@ -29,6 +29,8 @@
         'views/grotto_cortes_views.xml',
         'views/stock_picking_views.xml',
         'wizard/stock_picking_reasignar_ruta_views.xml',
+        'wizard/generar_corte_picking_views.xml',
+        'reports/stock_picking_resumen_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
