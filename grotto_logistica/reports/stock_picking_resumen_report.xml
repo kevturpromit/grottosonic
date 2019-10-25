@@ -21,10 +21,80 @@
             string="Resumen para Despachos"
             report_type="qweb-pdf"
             name="grotto_logistica.stock_picking_despacho"
-            paperformat="paperformat_stock_picking_resumen_report"
-            menu="False"/>            
+            file="grotto_logistica.stock_picking_despacho"/>
+            
+        <template id="stock_picking_despacho">
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <br></br>
+                        <div class="text-center">
+                            <h3>
+                                <strong>Resumen de Ordenes de Entrega</strong>
+                            </h3>
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <table width="100%" class="table">
+                            <thead>
+                                <th class="text-center">Numero</th>
+                                <th class="text-center">Fecha</th>
+                                <th class="text-center">Doc.Origen</th>
+                                <th class="text-center">Cliente</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="o">
+                                	<tr>
+	                                     <td class="text-left">
+	                                         <t t-esc="o.name" />
+	                                     </td>
+	                                     <td class="text-left">
+	                                         <t t-esc="o.name" />
+	                                     </td>
+	                                     <td class="text-left">
+	                                         <t t-esc="o.origin" />
+	                                     </td>	                                     
+	                                     <td class="text-left">
+	                                         <t t-esc="o.partner_id.name" />
+	                                     </td>
+                                   	</tr>                                     
+                                </t>
+                            </tbody>
+                        </table>         
+                        <table width="100%" class="table">
+                            <thead>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Cantidad</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="get_data" t-as="obj">
+                                    <tr t-foreach="obj['line']" t-as="l">
+                                        <td class="text-center">
+                                            <t t-esc="l['product_name']" />
+                                        </td>
+                                        <td class="text-center">
+                                            <t t-esc="l['cantidad']" />
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr t-foreach="get_data" t-as="obj">
+                                    <td class="text-center">
+                                        <b>Total </b>
+                                    </td>
+                                    <td class="text-center">
+                                        <b>
+                                            <t t-esc="obj['total']" />
+                                        </b>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>                        
 
-    <template id="stock_picking_despacho">
+    <template id="stock_picking_despacho2">
         <div class="header" style="border-bottom: 2px solid black">
             <h3 class="text-center">Resumen de Albaranes para Despacho</h3>
             <!-- 
@@ -53,7 +123,7 @@
                                 <span t-esc="doc['date']"/>
                             </td>
                             <td class="text-center">
-                                <span t-esc="doc['partner_id']"/>
+                                <span t-esc="doc['date']"/>
                             </td>
                         </tr>
                     </t>
